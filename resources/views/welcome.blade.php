@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel & Heroku
+                    API TCMS with Laravel & Heroku
                 </div>
 
                 <div class="links">
