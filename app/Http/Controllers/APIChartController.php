@@ -18,11 +18,11 @@ class APIChartController extends Controller
         $q = MemberModel::groupBy('Member_Kelamin')
                 ->select('Member_Kelamin AS Id', 
                         DB::raw('CASE
-                            WHEN Member_Kelamin = 1 THEN "Laki-laki"
-                            WHEN Member_Kelamin = 2 THEN "Perempuan"
-                            ELSE "Tidak diketahui" 
+                            WHEN "Member_Kelamin" = \'1\' THEN \'Laki-laki\'
+                            WHEN "Member_Kelamin" = \'2\' THEN \'Perempuan\'
+                            ELSE \'Tidak diketahui\' 
                         END AS Nama'),
-                        DB::raw('count(Member_Kelamin) as Jumlah'))
+                        DB::raw('count("Member_Kelamin") as Jumlah'))
                 ->get();
         
         return response()->json($q);  
@@ -31,16 +31,16 @@ class APIChartController extends Controller
     public function LpById(Request $request,$id){
 
 
-        $q = LpModel::where('LP_Id', '=', $id)
+        $q = LpModel::where('lp_id', '=', $id)
                 ->select(
-                    'LP_Id',
-                    'LP_Model',
-                    'LP_Desk',
-                    DB::raw('UPPER(LP_Nomor) AS LP_Nomor'),
-                    DB::raw('LOWER(LP_Pola_Modus) AS LP_Pola_Modus'),
-                    DB::raw('LOWER(LP_Pola_Motif) AS LP_Pola_Motif'),
-                    DB::raw('LOWER(LP_Pola_Sasaran) AS LP_Pola_Sasaran'),
-                    DB::raw('DATE_FORMAT(LP_Tanggal, "%d %M %Y") AS LP_Tanggal'))
+                    'lp_id',
+                    'lp_model',
+                    'lp_desk',
+                    DB::raw('UPPER("lp_nomor") AS lp_Nomor'),
+                    DB::raw('LOWER("lp_pola_modus") AS lp_Pola_Modus'),
+                    DB::raw('LOWER("lp_pola_motif") AS lp_Pola_Motif'),
+                    DB::raw('LOWER("lp_pola_sasaran") AS lp_Pola_Sasaran'),
+                    DB::raw('TO_CHAR("lp_tanggal" :: DATE, \'Mon dd, yyyy\') AS lp_Tanggal'))
                 ->get();
         
         return response()->json($q);
