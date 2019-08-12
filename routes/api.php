@@ -16,11 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware('jwt.verify')->get('users', function(Request $request) {
+Route::middleware('jwt.auth')->get('users', function(Request $request) {
     return auth()->user();
 });
 
 Route::post('users/register', 'APIRegisterController@register');
 Route::post('users/login', 'APILoginController@login');
-Route::get('chart/kelamin', 'APIChartController@ChartKelamin')->middleware('jwt.verify');
-Route::get('detail/lp/{id}', 'APIChartController@LpById')->middleware('jwt.verify');
+Route::get('chart/kelamin', 'APIChartController@ChartKelamin')->middleware('jwt.auth');
+Route::get('detail/lp/{id}', 'APIChartController@LpById')->middleware('jwt.auth');
