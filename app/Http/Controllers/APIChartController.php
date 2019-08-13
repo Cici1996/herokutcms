@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\MemberModel;
 use App\Models\LpModel;
+use App\Models\VJenisUsiaModel;
 
 class APIChartController extends Controller
 {
@@ -58,6 +59,13 @@ class APIChartController extends Controller
                     DB::raw('TO_CHAR("lp_tanggal" :: DATE, \'Mon dd, yyyy\') AS tanggal'))
                 ->get();
         
+        return response()->json($q);
+
+    }
+
+    public function ChartUsia(Request $request){
+
+        $q = VJenisUsiaModel::get();
         return response()->json($q);
 
     }
