@@ -55,7 +55,7 @@ class APIChartController extends Controller
                     'lp_model AS model',
                     'lp_desk AS desk',
                     DB::raw('UPPER("lp_nomor") AS nomor'),
-                    DB::raw('TO_CHAR("lp_tanggal" :: DATE, \'Mon dd yyyy\') AS tanggal'))
+                    DB::raw('TO_CHAR("lp_tanggal" :: DATE, \'Mon dd, yyyy\') AS tanggal'))
                 ->get();
         
         return response()->json($q);
