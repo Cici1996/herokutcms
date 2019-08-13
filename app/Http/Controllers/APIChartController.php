@@ -51,11 +51,11 @@ class APIChartController extends Controller
 
 
         $q = LpModel::select(
-                    'lp_id AS Id',
-                    'lp_model AS Model',
-                    'lp_desk AS Desk',
-                    DB::raw('UPPER("lp_nomor") AS Nomor'),
-                    DB::raw('TO_CHAR("lp_tanggal" :: DATE, \'Mon dd, yyyy\') AS Tanggal'))
+                    'lp_id AS id',
+                    'lp_model AS model',
+                    'lp_desk AS desk',
+                    DB::raw('UPPER("lp_nomor") AS nomor'),
+                    DB::raw('TO_CHAR("lp_tanggal" :: DATE, \'Mon dd, yyyy\') AS tanggal'))
                 ->get();
         
         return response()->json($q);
