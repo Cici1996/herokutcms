@@ -69,4 +69,25 @@ class APIChartController extends Controller
         return response()->json($q);
 
     }
+
+    public function DetailUserData(Request $request,$id){
+
+        $q = DB::table('users AS a')
+                ->select(
+                    'id',
+                    'member_id',
+                    'Member_NRP AS member_nrp',
+                    'Member_Nama AS member_nama',
+                    DB::raw('TO_CHAR("Member_Tgl_Lahir" :: DATE, \'Mon dd, yyyy\') AS tanggal_lahir'),
+                    DB::raw('CASE 
+                                WHEN "Member_Kelamin" = \'1\' THEN \'Laki-laki\'
+                                WHEN "Member_Kelamin" = \'2\' THEN \'Perempuan\'
+                            ELSE \'Tidak diketahui\' END AS kelamin')
+                    )
+                ->join('t_member AS b','b.Member_ID','=','a.member_id')
+                ->where('b.Member_ID','=','671')
+                ->get();
+        return response()->json($q);
+
+    }
 }

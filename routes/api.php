@@ -26,3 +26,4 @@ Route::get('chart/kelamin', 'APIChartController@ChartKelamin')->middleware('jwt.
 Route::get('chart/usia', 'APIChartController@ChartUsia')->middleware('jwt.verify');
 Route::get('detail/lp/{id}', 'APIChartController@LpById')->middleware('jwt.verify');
 Route::get('detail/lp', 'APIChartController@Lp')->middleware('jwt.verify');
+Route::get('users/{id}', 'APIChartController@DetailUserData')->middleware('jwt.verify');
