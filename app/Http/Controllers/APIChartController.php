@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use JWTFactory;
 use JWTAuth;
 use Validator;
@@ -70,7 +72,9 @@ class APIChartController extends Controller
 
     }
 
-    public function DetailUserData(Request $request,$id){
+    public function DetailUserData(Request $request){
+
+        $userId = Auth::id();
 
         $q = DB::table('users AS a')
                 ->select(
@@ -85,8 +89,8 @@ class APIChartController extends Controller
                             ELSE \'Tidak diketahui\' END AS kelamin')
                     )
                 ->join('t_member AS b','b.Member_ID','=','a.member_id')
-                ->where('b.Member_ID','=','671')
-                ->get();
+                ->where('a.id','=',$userId)
+                ->first();
         return response()->json($q);
 
     }
