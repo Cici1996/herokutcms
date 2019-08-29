@@ -7,6 +7,35 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router';
+
+import index from "./components/provinsi/index.vue";
+import create from "./components/provinsi/create.vue";
+import view from "./components/provinsi/view.vue";
+
+Vue.use(VueRouter);
+
+const routes = [
+    {
+        path: 'provinsi/',
+        name: 'userIndex',
+        component: index
+    },
+    {
+        path: 'provinsi/create',
+        name: 'userCreate',
+        component: create
+    },
+    {
+        path: 'provinsi/view/:id',
+        name: 'userView',
+        component: view
+    }
+]
+
+const router = new VueRouter({
+    routes // short for `routes: routes`
+})
 
 /**
  * The following block of code may be used to automatically register your
@@ -28,5 +57,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
-});
+    router
+}).$mount('#app')

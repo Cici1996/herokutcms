@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/provinsi', 'ProvinsiController@store');
+Route::get('/provinsi', 'ProvinsiController@view');
+Route::get('/provinsi/paginate', 'ProvinsiController@paginate');
+Route::get('/provinsi/{id}', 'ProvinsiController@show');
